@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
+import Landing from './components/Landing';
+import Edit from './components/Edit';
+import { Provider } from "react-redux"
+import appStore from './components/store/appStore';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div className='App'>
+      
+      <Landing/>
+      
     </div>
+    
   );
 }
 
-export default App;
+const appRouter = createBrowserRouter([
+  {
+    path:"/",
+    element:<App/>
+  },
+  {
+    path:"/edit/:id",
+    element: <Edit/>
+  }
+])
+
+
+
+export default appRouter;
