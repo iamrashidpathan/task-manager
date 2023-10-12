@@ -15,6 +15,7 @@ const Create = (props)=>{
     useEffect(()=>{
         if(task.title.trim().length>0)
             dispatch(addTask(task))
+            setTask({title:"", description:"", dueDate:"",id:"", completed:false})
     },[task.id])
 
     const handleSubmit =()=>{
@@ -38,11 +39,11 @@ const Create = (props)=>{
             noValidate
             autoComplete="off">
             <TextField id="task-title" label="Title" variant="outlined" 
-            onChange={(e)=>setTask((prev)=>({...prev, title:e.target.value}))} />
+            onChange={(e)=>setTask((prev)=>({...prev, title:e.target.value}))} value={task.title}/>
             <textarea
             className="form-control"
             rows="10"
-            // columns="100"
+            value={task.description}
             placeholder="Add Description"
             onChange={(e)=>setTask((prev)=>({...prev, description:e.target.value}))}
             >
@@ -50,7 +51,7 @@ const Create = (props)=>{
       </Box>
 
         <label id="due-date">Due Date:</label>
-        <input type="date" id="due-date" name="due-date"
+        <input value={task.dueDate} type="date" id="due-date" name="due-date"
         onChange={(e)=>setTask((prev)=>({...prev, dueDate:e.target.value}))}
         />
 
